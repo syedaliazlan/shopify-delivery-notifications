@@ -86,7 +86,7 @@ export const action = async ({ request }) => {
     }
 
     // ✅ Fetch order details
-    const accessToken = "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";
+    const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
     const orderData = await getOrderDetails(shop, order_id, accessToken);
     if (!orderData) return new Response();
 
