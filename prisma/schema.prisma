@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Session {
+  id            String    @id @default(uuid())  // Add UUID default for PostgreSQL
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+
+model SmsTemplate {
+  id             String   @id @default(uuid())
+  shop           String
+  dispatched     String
+  inTransit      String
+  outForDelivery String
+  delivered      String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+
+model OrderNotificationStatus {
+  id                String   @id @default(uuid())
+  shop              String   // Store the shop domain
+  orderId           String   // Track each order separately
+  sent_dispatched   Boolean  @default(false)
+  sent_in_transit   Boolean  @default(false)
+  sent_out_for_delivery Boolean @default(false)
+  sent_delivered    Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([shop, orderId]) // ✅ Ensures one entry per order per shop
+}
+
+model GuestConsent {
+  id         String   @id @default(uuid())
+  sessionId  String   @unique // Store session ID to track guest users
+  consent    Boolean  @default(false) // Stores SMS opt-in status
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+

@@ -1,0 +1,46 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "f52ea0b933e937ad77e94f02219b1278"
+application_url = "https://delivery-notifications-r53w5.ondigitalocean.app/"
+embedded = true
+name = "Custom Delivery Notifications"
+handle = "delivery-70"
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "plus-packaging-test-store.myshopify.com"
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2025-01"
+
+  [[webhooks.subscriptions]]
+  topics = [ "fulfillments/update" ]
+  uri = "/webhooks/app/fulfillments-update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+  
+  [[webhooks.subscriptions]]
+  topics = [ "orders/create" ]
+  uri = "/webhooks/app/orders-create"
+
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_customers,read_fulfillments,read_orders,read_products"
+
+[auth]
+redirect_urls = [
+  "https://delivery-notifications-r53w5.ondigitalocean.app//auth/callback",
+  "https://delivery-notifications-r53w5.ondigitalocean.app//auth/shopify/callback",
+  "https://delivery-notifications-r53w5.ondigitalocean.app//api/auth/callback"
+]
+
+[pos]
+embedded = false
