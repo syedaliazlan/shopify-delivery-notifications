@@ -7,6 +7,7 @@ import axios from "axios";
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
+  const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
 
   if (!accountSid || !authToken || !messagingServiceSid) {
     throw new Error("Twilio credentials are missing in environment variables");
@@ -86,7 +87,7 @@ export const action = async ({ request }) => {
     }
 
     // ✅ Fetch order details
-    const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
+    
     const orderData = await getOrderDetails(shop, order_id, accessToken);
     if (!orderData) return new Response();
 
