@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "f52ea0b933e937ad77e94f02219b1278"
-application_url = "https://delivery-notifications-r53w5.ondigitalocean.app/"
+application_url = "https://shopify-delivery-notifications-kl47y.ondigitalocean.app/"
 embedded = true
 name = "Custom Delivery Notifications"
 handle = "delivery-70"
