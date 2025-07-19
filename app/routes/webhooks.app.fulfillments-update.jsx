@@ -1,13 +1,14 @@
 import { authenticate } from "../shopify.server";
 import { getSmsTemplate, isNotificationSent, markNotificationSent } from "../models/smsTemplate.server";
 import axios from "axios";
+const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
 
   // Function to send SMS via Twilio (server-only)
   const sendTwilioMessage = async (message, recipient) => {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
-  const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
+  
 
   if (!accountSid || !authToken || !messagingServiceSid) {
     throw new Error("Twilio credentials are missing in environment variables");
