@@ -8,7 +8,7 @@ handle = "delivery-70"
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "plus-packaging-test-store.myshopify.com"
+dev_store_url = ""
 include_config_on_deploy = true
 
 [webhooks]
@@ -37,9 +37,9 @@ scopes = "read_customers,read_fulfillments,read_orders,read_products"
 
 [auth]
 redirect_urls = [
-  "https://delivery-notifications-r53w5.ondigitalocean.app//auth/callback",
-  "https://delivery-notifications-r53w5.ondigitalocean.app//auth/shopify/callback",
-  "https://delivery-notifications-r53w5.ondigitalocean.app//api/auth/callback"
+  "https://shopify-delivery-notifications-kl47y.ondigitalocean.app/auth/callback",
+  "https://shopify-delivery-notifications-kl47y.ondigitalocean.app/auth/shopify/callback",
+  "https://shopify-delivery-notifications-kl47y.ondigitalocean.app/api/auth/callback"
 ]
 
 [pos]
